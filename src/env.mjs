@@ -10,7 +10,7 @@ export const env = createEnv({
     DATABASE_URL: z.string().optional(),
     NODE_ENV: z.enum(["development", "test", "production"]),
     NEXTAUTH_SECRET: z.string().optional(),
-    NEXTAUTH_URL: z.string().optional(),
+    NEXTAUTH_URL: z.string().default("http://localhost:3000"),
     // z.preprocess(
     //   // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
     //   // Since NextAuth.js automatically uses the VERCEL_URL if present.
