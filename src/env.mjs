@@ -7,9 +7,9 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    DATABASE_URL: z.string().url().optional(),
+    DATABASE_URL: z.string().optional(),
     NODE_ENV: z.enum(["development", "test", "production"]),
-    NEXTAUTH_SECRET: z.string().min(1).optional(),
+    NEXTAUTH_SECRET: z.string().optional(),
     NEXTAUTH_URL: z.preprocess(
       // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
       // Since NextAuth.js automatically uses the VERCEL_URL if present.
