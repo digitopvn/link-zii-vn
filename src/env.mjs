@@ -10,13 +10,14 @@ export const env = createEnv({
     DATABASE_URL: z.string().optional(),
     NODE_ENV: z.enum(["development", "test", "production"]),
     NEXTAUTH_SECRET: z.string().optional(),
-    NEXTAUTH_URL: z.preprocess(
-      // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
-      // Since NextAuth.js automatically uses the VERCEL_URL if present.
-      (str) => process.env.VERCEL_URL ?? str,
-      // VERCEL_URL doesn't include `https` so it cant be validated as a URL
-      process.env.VERCEL ? z.string().min(1) : z.string().url(),
-    ),
+    NEXTAUTH_URL: z.string().optional(),
+    // z.preprocess(
+    //   // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
+    //   // Since NextAuth.js automatically uses the VERCEL_URL if present.
+    //   (str) => process.env.VERCEL_URL ?? str,
+    //   // VERCEL_URL doesn't include `https` so it cant be validated as a URL
+    //   process.env.VERCEL ? z.string().min(1) : z.string().url(),
+    // ),
     // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
     DISCORD_CLIENT_ID: z.string().optional(),
     DISCORD_CLIENT_SECRET: z.string().optional(),
